@@ -1,0 +1,3 @@
+.container {
+    @apply w-full h-32 fixed top-0 z-10 bg-[#ffffff] shadow ;
+}
