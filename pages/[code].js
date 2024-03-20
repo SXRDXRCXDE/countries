@@ -63,20 +63,14 @@ export default function () {
         },
     ]
 
-    async function LinkHandler(value) {
-        await window.scrollTo(0,0)
-        await setSelectedRandomName(value)
-        postData()
-    }
-
 
     const {query} = useRouter()
 
 
-    const postData = async () => {
+    const postData = async (code) => {
         try {
             const response = await axios.post('https://countries-backend-y8w2.onrender.com/api/post_country', {
-                code: query.code
+                code: query.code || code
             });
             console.log('Response:', response.data);
             setLayout(response.data)
@@ -122,6 +116,11 @@ export default function () {
             setHandle(false);
             setGalleryTrigger(true);
         }
+
+        if (selectedRandomName) {
+            postData(selectedRandomName)
+        }
+
     }, [query.code, handle]);
 
     useEffect(() => {
@@ -132,10 +131,10 @@ export default function () {
         }
     }, [dataLayout, galleryTrigger]);
 
-
-    // console.log(dataLayout)
-    // console.log(dataLayout?.data?.name.toString())
-
+    async function LinkHandler(value) {
+        await window.scrollTo(0,0)
+        await setSelectedRandomName(value)
+    }
     return(
         <MainContainer title={dataLayout?.data?.name} keywords={dataLayout?.data?.name}>
             <div className={`w-full h-auto min-h-screen flex flex-col items-center mt-16`}>
