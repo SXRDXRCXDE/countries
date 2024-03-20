@@ -282,11 +282,6 @@ export default function AmountModule() {
                         </Select>
                     </div>
 
-
-                    {isAnyFilterSelected() && (
-                        <div onClick={ClearFilters} className={'px-5 py-3 rounded-lg bg-[#1C6EF2] text-white font-semibold  cursor-pointer'}>Clear filters</div>
-                    )}
-
                 </div>
 
                 <div className={'w-full flex flex-wrap items-center justify-start gap-3 my-6 px-5 my-6'}>
@@ -383,7 +378,13 @@ export default function AmountModule() {
 
                 </div>
 
+                <div className={'w-full flex  items-center justify-end gap-3 my-6 px-5 my-6'}>
 
+                    {isAnyFilterSelected() && (
+                        <div onClick={ClearFilters} className={'px-5 py-3 rounded-lg bg-[#1C6EF2] text-white font-semibold  cursor-pointer'}>Clear filters</div>
+                    )}
+
+                </div>
 
             </div>
         </>
