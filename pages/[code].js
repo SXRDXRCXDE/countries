@@ -6,7 +6,6 @@ import CollapseMenu from "../components/CollapseMenu/CollapseMenu";
 import MainContainer from "../components/MainContainer/MainContainer";
 import {useDispatch} from "react-redux";
 import {setSlug} from "../GlobalRedux/Features/SelectedCountrySlugSlice";
-import {setFilterChange} from "../GlobalRedux/Features/FilterChangeSlice";
 import {setTrigger} from "../GlobalRedux/Features/DataTriggerSlice";
 import GalleryCard from "../components/GalleryCard/GalleryCard";
 
@@ -67,6 +66,7 @@ export default function () {
     async function LinkHandler(value) {
         await window.scrollTo(0,0)
         await setSelectedRandomName(value)
+        postData()
     }
 
 
@@ -102,7 +102,7 @@ export default function () {
         try {
             const response = await axios.get('https://api.pexels.com/v1/search', {
                 params: {
-                    query: `${dataLayout?.data?.name.toLowerCase().toString()}`
+                    query: `${dataLayout?.data?.name}`
                 },
                 headers: {
                     Authorization: 'D9lQxd3amEJV5ZhHjyB1CMCRZKGVuyFPUgBGTc6pEZRtiUymNTe8fNtB'
@@ -138,7 +138,7 @@ export default function () {
 
     return(
         <MainContainer title={dataLayout?.data?.name} keywords={dataLayout?.data?.name}>
-            <div className={`w-full h-auto min-h-screen flex flex-col items-center mt-32`}>
+            <div className={`w-full h-auto min-h-screen flex flex-col items-center mt-16`}>
 
                 {query.code && handle && loading ? (
                         <div className={'w-full h-96'}>
@@ -225,7 +225,7 @@ export default function () {
                             <div className={'w-auto h-auto flex max-[500px]:flex-col items-center min-[500px]:flex-wrap justify-start gap-3'}>
 
                                 {randomCountries?.random_countries?.slice(0,5).map((value, index)=> <div key={index} className={'w-[15rem] h-[12rem] flex flex-col items-center justify-center rounded-xl relative bg-black overflow-hidden shadow-xl bg-gradient-to-r from-gray-950 to-gray-600'}>
-                                    <Link onClick={()=>LinkHandler(value.name)} href={`/${value.name}`} >
+                                    <Link onClick={()=>LinkHandler(value.code)} href={`/${value.code}`} >
 
                                         {/*<img src={cover} className={'w-full h-full object-cover absolute top-0 left-0 brightness-50 -z-0'}/>*/}
 

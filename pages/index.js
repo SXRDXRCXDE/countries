@@ -100,16 +100,17 @@ const Index = () => {
 
     }
 
-    console.log(slugTrigger)
+    console.log(data.data)
 
     const keyword = data?.data?.title?.seo_slug || '';
 
     return (
         <MainContainer title={data?.data?.title?.seo_title} keyword={keyword}>
-            <div className={`w-full h-auto flex flex-col items-center mt-32`}>
+            <div className={`w-full h-auto flex flex-col items-center mt-16`}>
                 {/*Dynamic slug Baby names*/}
-                <div className={'w-full max-[1550px]:px-7 max-w-[1500px] flex flex-col mt-12 '}>
+                <div className={'w-full max-[1550px]:px-7 max-w-[1500px] flex items-end justify-between mt-12 '}>
                     <span className={'text-5xl font-bold max-[600px]:text-3xl '}>{data?.data?.title?.seo_title}</span>
+                    <span className={'text-3xl font-bold max-[600px]:text-xl '}>Filters</span>
                 </div>
 
                 {/* Filters */}
