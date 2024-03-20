@@ -97,99 +97,7 @@ export default function AmountModule() {
         <>
             <div>
 
-                <div className={'w-full flex flex-wrap items-center justify-start gap-3 my-6 px-5 my-6'}>
 
-                    <div className={'flex flex-row items-center gap-3 font-semibold rounded-xl p-2 bg-[#f2f2f2] shadow'}>
-                        <span>{data?.data?.filter_options[5]?.filter_title}</span>
-                        <Select
-                            defaultValue=""
-                            allowClear={true}
-                            value={landlocked}
-                            style={{
-                                width: "150px",
-                            }}
-                            onChange={(value)=>{
-                                if (value !== undefined) {
-                                    dispatch(setLandlocked(value));
-
-                                } else {
-                                    // Если выбрано значение "очистить", то обнуляем фильтр
-                                    dispatch(setLandlocked(''));
-
-                                }
-                                dispatch(setFilterChange(true));
-
-                            }}
-                        >
-                            {data?.data?.filter_options[5]?.filter_params?.map((value, index) => (
-                                <Option key={index} value={value.param_key}>
-                                    {value.param_value}
-                                </Option>
-                            ))}
-                        </Select>
-                    </div>
-
-                    <div className={'flex flex-row items-center gap-3 font-semibold rounded-xl p-2 bg-[#f2f2f2] shadow'}>
-                        <span>{data?.data?.filter_options[6]?.filter_title}</span>
-                        <Select
-                            defaultValue=""
-                            allowClear={true}
-                            value={independent}
-                            style={{
-                                width: "150px",
-                            }}
-                            onChange={(value)=>{
-                                if (value !== undefined) {
-                                    dispatch(setIndependent(value));
-
-                                } else {
-                                    // Если выбрано значение "очистить", то обнуляем фильтр
-                                    dispatch(setIndependent(''));
-
-                                }
-                                dispatch(setFilterChange(true));
-
-                            }}
-                        >
-                            {data?.data?.filter_options[6]?.filter_params?.map((value, index) => (
-                                <Option key={index} value={value.param_key}>
-                                    {value.param_value}
-                                </Option>
-                            ))}
-                        </Select>
-                    </div>
-
-                    <div className={'flex flex-row items-center gap-3 font-semibold rounded-xl p-2 bg-[#f2f2f2] shadow'}>
-                        <span>{data?.data?.filter_options[4]?.filter_title}</span>
-                        <Select
-                            defaultValue={''}
-                            allowClear={true}
-                            value={unMember}
-                            style={{
-                                width: "150px",
-                            }}
-                            onChange={(value)=>{
-                                if (value !== undefined) {
-                                    dispatch(setMember(value));
-
-                                } else {
-                                    // Если выбрано значение "очистить", то обнуляем фильтр
-                                    dispatch(setMember(''));
-
-                                }
-                                dispatch(setFilterChange(true));
-
-                            }}
-                        >
-                            {data?.data?.filter_options[4]?.filter_params?.map((value, index) => (
-                                <Option key={index} value={value.param_key}>
-                                    {value.param_value}
-                                </Option>
-                            ))}
-                        </Select>
-                    </div>
-
-                </div>
 
                 <div className={'w-full flex flex-wrap gap-3 items-center justify-start relative px-5 my-6'}>
 
@@ -380,6 +288,102 @@ export default function AmountModule() {
                     )}
 
                 </div>
+
+                <div className={'w-full flex flex-wrap items-center justify-start gap-3 my-6 px-5 my-6'}>
+
+                    <div className={'flex flex-row items-center gap-3 font-semibold rounded-xl p-2 bg-[#f2f2f2] shadow'}>
+                        <span>{data?.data?.filter_options[5]?.filter_title}</span>
+                        <Select
+                            defaultValue=""
+                            allowClear={true}
+                            value={landlocked}
+                            style={{
+                                width: "150px",
+                            }}
+                            onChange={(value)=>{
+                                if (value !== undefined) {
+                                    dispatch(setLandlocked(value));
+
+                                } else {
+                                    // Если выбрано значение "очистить", то обнуляем фильтр
+                                    dispatch(setLandlocked(''));
+
+                                }
+                                dispatch(setFilterChange(true));
+
+                            }}
+                        >
+                            {data?.data?.filter_options[5]?.filter_params?.map((value, index) => (
+                                <Option key={index} value={value.param_key}>
+                                    {value.param_value}
+                                </Option>
+                            ))}
+                        </Select>
+                    </div>
+
+                    <div className={'flex flex-row items-center gap-3 font-semibold rounded-xl p-2 bg-[#f2f2f2] shadow'}>
+                        <span>{data?.data?.filter_options[6]?.filter_title}</span>
+                        <Select
+                            defaultValue=""
+                            allowClear={true}
+                            value={independent}
+                            style={{
+                                width: "150px",
+                            }}
+                            onChange={(value)=>{
+                                if (value !== undefined) {
+                                    dispatch(setIndependent(value));
+
+                                } else {
+                                    // Если выбрано значение "очистить", то обнуляем фильтр
+                                    dispatch(setIndependent(''));
+
+                                }
+                                dispatch(setFilterChange(true));
+
+                            }}
+                        >
+                            {data?.data?.filter_options[6]?.filter_params?.map((value, index) => (
+                                <Option key={index} value={value.param_key}>
+                                    {value.param_value}
+                                </Option>
+                            ))}
+                        </Select>
+                    </div>
+
+                    <div className={'flex flex-row items-center gap-3 font-semibold rounded-xl p-2 bg-[#f2f2f2] shadow'}>
+                        <span>{data?.data?.filter_options[4]?.filter_title}</span>
+                        <Select
+                            defaultValue={''}
+                            allowClear={true}
+                            value={unMember}
+                            style={{
+                                width: "150px",
+                            }}
+                            onChange={(value)=>{
+                                if (value !== undefined) {
+                                    dispatch(setMember(value));
+
+                                } else {
+                                    // Если выбрано значение "очистить", то обнуляем фильтр
+                                    dispatch(setMember(''));
+
+                                }
+                                dispatch(setFilterChange(true));
+
+                            }}
+                        >
+                            {data?.data?.filter_options[4]?.filter_params?.map((value, index) => (
+                                <Option key={index} value={value.param_key}>
+                                    {value.param_value}
+                                </Option>
+                            ))}
+                        </Select>
+                    </div>
+
+                </div>
+
+
 
             </div>
         </>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import axios from "axios";
 import CollapseMenu from "../components/CollapseMenu/CollapseMenu";
 import MainContainer from "../components/MainContainer/MainContainer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setSlug} from "../GlobalRedux/Features/SelectedCountrySlugSlice";
 import {setTrigger} from "../GlobalRedux/Features/DataTriggerSlice";
 import GalleryCard from "../components/GalleryCard/GalleryCard";
@@ -18,6 +18,18 @@ const Skeleton = dynamic(() => import('antd/es/skeleton').then(mod => mod.defaul
 export default function () {
 
     const dispatch = useDispatch()
+
+    const continent = useSelector((state)=>state.continent.continent)
+    const language = useSelector((state)=>state.language.language)
+    const currency = useSelector((state)=>state.currency.currency)
+    const border = useSelector((state)=>state.border.border)
+    const unMember = useSelector((state)=>state.unMember.member)
+    const landlocked = useSelector((state)=>state.landlocked.isLandlocked)
+    const independent = useSelector((state)=>state.independent.isIndependent)
+    const sortBy = useSelector((state)=>state.sortBy.sortBy)
+    const sortOrder = useSelector((state)=>state.sortOrder.sortOrder)
+
+
 
     const [dataLayout,setLayout] = useState([])
     const [randomCountries,setRandomCountries] = useState([])
@@ -65,6 +77,35 @@ export default function () {
 
 
     const {query} = useRouter()
+
+    const fetchData = async () => {
+        try {
+            setLoading(true)
+            const response = await axios.post('https://countries-backend-y8w2.onrender.com/api/filter_names', {
+
+                filter_params: {
+                    independent: independent,
+                    unMember: unMember,
+                    landlocked: landlocked,
+                    currency: currency,
+                    languages: language,
+                    continents: continent,
+                    borders: border,
+                },
+                sort_params: {
+                    sort_category: sortBy,
+                    sort_order: sortOrder,
+                },
+
+            });
+
+            console.log(response.data); // Ваш ответ
+            setData(response.data)
+        } catch (error) {
+            setLoading(false)
+            console.error('Ошибка при запросе:', error);
+        }
+    };
 
 
     const postData = async (code) => {
@@ -226,7 +267,7 @@ export default function () {
                                 {randomCountries?.random_countries?.slice(0,5).map((value, index)=> <div key={index} className={'w-[15rem] h-[12rem] flex flex-col items-center justify-center rounded-xl relative bg-black overflow-hidden shadow-xl bg-gradient-to-r from-gray-950 to-gray-600'}>
                                     <Link onClick={()=>LinkHandler(value.code)} href={`/${value.code}`} >
 
-                                        <img src={'https://flagcdn.com/w320/pr.png'} className={'w-full h-full object-cover absolute top-0 left-0  -z-0'}/>
+                                        <img src={value.flag_png} className={'w-full h-full object-cover absolute top-0 left-0  -z-0'}/>
 
                                         {/*<div className={'w-auto h-auto z-0 text-white underline text-3xl text-center font-semibold'}>{value.name}</div>*/}
 
