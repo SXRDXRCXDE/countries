@@ -226,9 +226,9 @@ export default function () {
                                 {randomCountries?.random_countries?.slice(0,5).map((value, index)=> <div key={index} className={'w-[15rem] h-[12rem] flex flex-col items-center justify-center rounded-xl relative bg-black overflow-hidden shadow-xl bg-gradient-to-r from-gray-950 to-gray-600'}>
                                     <Link onClick={()=>LinkHandler(value.code)} href={`/${value.code}`} >
 
-                                        {/*<img src={cover} className={'w-full h-full object-cover absolute top-0 left-0 brightness-50 -z-0'}/>*/}
+                                        <img src={'https://flagcdn.com/w320/pr.png'} className={'w-full h-full object-cover absolute top-0 left-0  -z-0'}/>
 
-                                        <div className={'w-auto h-auto z-0 text-white underline text-3xl text-center font-semibold'}>{value.name}</div>
+                                        {/*<div className={'w-auto h-auto z-0 text-white underline text-3xl text-center font-semibold'}>{value.name}</div>*/}
 
                                     </Link>
                                 </div>)}
